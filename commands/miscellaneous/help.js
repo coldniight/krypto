@@ -6,7 +6,7 @@ module.exports = {
         description: "Shows a list of avaible commands.",
         usage: "!help",
         accessableby: "Members",
-        aliases: ["cmds", "commands"]
+        aliases: ["cmds", "commands", "?"]
     },
     run: async (bot, message, args) => {
         let adminembed = new RichEmbed()
