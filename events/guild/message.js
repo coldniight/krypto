@@ -10,17 +10,19 @@ module.exports = async (bot, message) => {
     .setColor(message.guild.roles.find(r => r.name === "Krypto Bot").color)
     .setFooter(message.id)
     .setTimestamp();
-
-    if (message.channel.id === '396382367423397889'){
     
     let args = message.content.slice(prefix.length).trim().split(/ +/g)
     let cmd = args.shift().toLowerCase()
     if(!message.content.startsWith(prefix)) return;
     
     let commandfile = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd))
-    if(commandfile) commandfile.run(bot, message, args)
-   }
-  else{
+    if (message.channel.id === '396382367423397889'){
+    if(commandfile) {
+    commandfile.run(bot, message, args)
+    }
+    }
+    else{
+    if(commandfile) {
   	if(!message.member.hasPermissions("MANAGE_MESSAGES")) return message.channel.send(perembed)
 
   	let args = message.content.slice(prefix.length).trim().split(/ +/g)
@@ -28,6 +30,7 @@ module.exports = async (bot, message) => {
     if(!message.content.startsWith(prefix)) return;
     
     let commandfile = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd))
-    if(commandfile) commandfile.run(bot, message, args)
+    commandfile.run(bot, message, args)
+    }
+    }
    }
-}
